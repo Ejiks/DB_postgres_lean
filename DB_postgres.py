@@ -32,7 +32,7 @@ connection = engine.connect()
 # for i in range(1,10):
 #     connection.execute(
 #     f"""INSERT INTO Album
-#     VALUES(default, 'album_name{str(i)}', 198{i});
+#     VALUES(default, 'album_name{str(i)}', 201{i});
 #     """)
 
 # for i in range(1,16):
@@ -47,10 +47,19 @@ connection = engine.connect()
 #     VALUES({i}, {i});
 #     """)
 
-for i in range(1,9):
+# for i in range(1,9):
+#     connection.execute(
+#     f"""INSERT INTO Collection
+#     VALUES({i}, {i});
+#     """)
+
+#pprint(connection.execute("SELECT * FROM Collection;").fetchall())
+
+for i in range(1,19):
     connection.execute(
-    f"""INSERT INTO Collection
-    VALUES({i}, {i});
+    f"""UPDATE Track
+    SET track_name = 'my track_name{i}'
+    WHERE id_album = {i/5};
     """)
 
-pprint(connection.execute("SELECT * FROM Collection;").fetchall())
+pprint(connection.execute("SELECT * FROM Track;").fetchall())
