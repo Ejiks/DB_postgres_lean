@@ -1,20 +1,17 @@
-from pprint import pprint
-import sqlalchemy
+SELECT album_name, release_year from Album
+WHERE release_year = 2018;
 
-engine = sqlalchemy.create_engine('postgresql://postgres:delphi098@localhost:5432/music_shop2')
-engine
-connection = engine.connect()
+SELECT track_name, duration from Track
+WHERE duration = (SELECT MAX(duration) FROM Track);
 
+SELECT track_name, duration from Track
+WHERE duration >= 3.5;
 
-# for i in range(1,10):
-#     connection.execute(
-#     f"""UPDATE Album
-#     SET realese_year = 201{i}
-#     WHERE 
-#     VALUES(default, 'album_name{str(i)}', 198{i});
-#     """)
+SELECT name from Collection_info
+WHERE release_year BETWEEN 2018 and 2020;
 
-# pprint(connection.execute(
-#     """SELECT * FROM Album;
-#     """
-# ).fetchall())
+SELECT nickname from Author
+WHERE nickname NOT LIKE '% %';
+
+SELECT track_name from Track
+WHERE track_name LIKE 'my %' or track_name LIKE '% my %' or track_name LIKE '% my';
